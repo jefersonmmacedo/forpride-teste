@@ -1,11 +1,10 @@
 
 class Payments {
+  id: string;
   idPlain: string;
-  idAccount: string;
-  username:string;
+  idCompany: string;
   email:string;
   namePlain:string;
-  referencePlain:string;
   value: string;
   period: number;
   linkComprovant: string;

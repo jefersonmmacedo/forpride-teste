@@ -16,8 +16,6 @@ await collections.plains.find(id).sort( { created_at: -1 } ).toArray(function(er
         res.status(500).json(err)
       } else {
         res.status(200).json(result)
-        console.log(result)
-        console.log(result.length)
       }
       return result;
      })

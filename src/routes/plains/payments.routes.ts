@@ -16,7 +16,7 @@ paymentsRoutes.get("/all", (req, res) => {
   return listPaymentsAllController.handle(req, res);
 });
 
-paymentsRoutes.get("/:idAccount", (req, res) => {
+paymentsRoutes.get("/:idCompany", (req, res) => {
   return listPaymentsController.handle(req, res);
 });
 

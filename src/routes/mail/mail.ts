@@ -4,42 +4,45 @@ import nodemailer from 'nodemailer';
 
 const mailRoutes = Router();
 
- mailRoutes.post("/invite", async (req, res) =>  {
-  const mail = req.body;
-  const patron = req.body;
+ mailRoutes.post("/create", async (req, res) =>  {
+  const email = req.body;
   const name = req.body;
-  const patronNickname = req.body;
 
-  console.log(mail.mail)
+  console.log(email.email);
+  console.log(name.name);
 
+  const port = 587
 
  let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
-    secure: true,
+    host: "smtp.umbler.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
+      user: "contato@suachave.com.br",
+      pass: "211902fluminense@"
     }
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Você tem um convite" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Convite Especial ✔ 🏳️‍🌈", // Subject line
-    text: "Convite Especial ✔ 🏳️‍🌈", // plain text body
-    html: `<p>Parabens ${name.name}! <br/>
-    Você foi convidado por ${patronNickname.patronNickname} a fazer parte da mais nova rede social. <br /> FORPRIDE é um site de Relacionamento EXCLUSIVO para LGBTQIA+. <br /><br/>
-    Esse convite é intransferível. <br/><br/>
-    Para criar seu perfil agora, acesse: <br/>
-    <a href="https://forpride.com.br/signup/convite/${mail.mail}/${patron.patron}" target="_blank">Criar minha conta agora!</a> <br/>
+    from: '"Seja bem-vindo" <contato@suachave.com.br>', // sender address
+    to: email.email, // list of receivers
+    subject: "Sua conta foi criada ✔", // Subject line
+    text: "Sua conta foi criada ✔", // plain text body
+    html: `<p style="text-decoration: none;">Parabens ${name.name}! <br/>
+    Seja muito bem-vindo a Sua Chave.
+    Somos uma start-up criada para imobiliárias e corretores, com foco em conectar seus imóveis a novos clientes. <br /><br />
+    
+    Acesse sua área administrativa clicando no link abaixo:<br/>
+    <a href="https://adm.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">Acessar área administrativa</a> <br/>
+  
     <br/><br/>
     Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    FOURSOME <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
+    Whatsapp: (21) 99742-9585<br/>
+    E-mail: contato@suachave.com.br <br/>
+    --
+    <br/>
+    <a href="https://www.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">www.suachave.com.br</a><p/>`, // html body.
   });
 
 
@@ -50,198 +53,23 @@ const mailRoutes = Router();
   } 
 });
 
-mailRoutes.post("/reinvite", async (req, res) =>  {
-  const mail = req.body;
-  const code = req.body;
-  const patron = req.body;
+mailRoutes.post("/documents", async (req, res) =>  {
+  const email = req.body;
   const name = req.body;
-  const patronNickname = req.body;
-  const type = req.body;
 
-  console.log(mail.mail)
-
-
- let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
-    }
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"Apenas um lembrete" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Não esqueça de nós 🤭", // Subject line
-    text: "Não esqueça de nós 🤭", // plain text body
-    html: `<p>Olá ${name.name}! <br/>
-    Crie sua conta e faça parte de uma rede de relacionamento, LGBTQIA+. <br />
-    FORPRIDE é um site de Relacionamento EXCLUSIVO para  LGBTQIA+. <br /><br/>
-    Este convite foi enviado por: ${patronNickname.patronNickname} <br /> 
-    Esse convite é intransferível. <br/><br/>
-    crie seu perfil agora mesmo: <br/>
-    <a href="https://forpride.com.br/signup/convite/${mail.mail}/${code.code}/${patron.patron}/${type.type}" target="_blank">Criar minha conta agora!</a> <br/>
-    <br/>
-    Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    FOURSOME <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
-  });
-
-
-
-  if(info) {
-        res.status(200).json({"message":"Email enviado com sucesso"});
-    console.log("Email enviado com sucesso")
-  } else {
-    console.log("Email não enviado")
-  }
-});
-
-mailRoutes.post("/accountaproved", async (req, res) =>  {
-  const mail = req.body;
-  console.log(mail);
+  console.log(email.email);
+  console.log(name.name);
+  
+  const port = 587
 
 
  let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
+    host: "smtp.umbler.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
-    }
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"Estamos muito felizes" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Vem com a gente 🚀", // Subject line
-    text: "Vem com a gente 🚀", // plain text body
-    html: `<p>Sua conta foi aprovada!!! <br/>
-    Sua solicitação para fazer parte da mais nova rede de relacionamento, LGBTQIA+. Foi aprovada.🏳️‍🌈<br/>
-
-    Acesse agora mesmo: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
-    
-    Estamos esperando por você!. <br/><br/>
-
-    Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    FOURSOME <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
-  });
-
-
-  console.log(info)
-  if(info) {
-    res.status(200).json({"message":"Email enviado com sucesso"});
-console.log("Email enviado com sucesso")
-}
-
-});
-mailRoutes.post("/accountrecused", async (req, res) =>  {
-  const mail = req.body;
-
-  console.log(mail)
-
- let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
-    auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
-    }
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"algo deu errado" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Que pena 😞", // Subject line
-    text: "Que pena 😞", // plain text body
-    html: `<p>Sua solicitação foi reprovada! <br/>
-    Seus dados não estão em conformidade com a política de nosso site ( foto do perfil ou dados incompletos). <br/><br/>
-Mas não fique triste, você pode enviar uma nova solicitação agora mesmo.<br/>
-Crie uma nova conta e preste bem atenção em todos os detalhes. Ok?.<br/><br/>
-Acesse site e crie uma nova conta: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
-    
-    Estamos esperando por você!. <br/><br/>
-
-    Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
-  });
-
-
-  console.log(info)
-  if(info) {
-    res.status(200).json({"message":"Email enviado com sucesso"});
-console.log("Email enviado com sucesso")
-} else {
-  res.status(500)
-}
-
-});
-mailRoutes.post("/confirmation", async (req, res) =>  {
-  const mail = req.body;
-
-
- let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
-    auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
-    }
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"Agora você faz parte" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Que Felicidade 🚀", // Subject line
-    text: "Que Felicidade 🚀", // plain text body
-    html: `<p>Você conseguiu! <br/>
-    Você criou sua conta com sucesso 🏳️‍🌈. Agora precisa dar mais um passo. Completar suas informações <br/><br/>
-    Acesse agora o nosso site, faça login e complete seu cadastro <br/>
-    Acessar site: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
-    
-    Estamos esperando por você!. <br/><br/>
-
-    Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
-  });
-
-
-  if(info) {
-    res.status(200).json({"message":"Email enviado com sucesso"});
-console.log("Email enviado com sucesso")
-}
-
-});
-
-
-mailRoutes.post("/complete", async (req, res) =>  {
-  const mail = req.body;
-  console.log(mail.mail)
-
-
- let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
-    auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
+      user: "contato@suachave.com.br",
+      pass: "211902fluminense@"
     }
   });
 
@@ -249,19 +77,70 @@ mailRoutes.post("/complete", async (req, res) =>  {
   
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Você está pronto" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Missão cumprida 😎🏳️‍🌈", // Subject line
-    text: "Só mais um passo 😎🏳️‍🌈", // plain text body
-    html: `<p>Parabéns, você concluiu seu cadastro com sucesso.<br/><br/>
-    Agora bastar aguardar a análise de nossos moderadores para liberação de sua conta.<br/>
-    <br/>
-    Acessar site: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
+    from: '"Novo documento" <contato@suachave.com.br>', // sender address
+    to: email.email, // list of receivers
+    subject: "Você recebeu novos documentos", // Subject line
+    text: "Você recebeu novos documentos", // plain text body
+    html: `<p>Olá, temos novidades<br/>
+    O Cliente: XXXXXXX
+    Enviou os documentos solicitados.<br/><br/>
+    Veja em sua área administrativa. Clique a baixo:<br/>
+    <a href="https://adm.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">Acessar área administrativa</a> <br/>
+    <br/><br/>
     Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
+    Whatsapp: (21) 99742-9585<br/>
+    E-mail: contato@suachave.com.br <br/>
+    --
+    <br/>
+    <a href="https://www.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">www.suachave.com.br</a><p/>`, // html body.
+  });
+
+
+  if(info) {
+    res.status(200).json({"message":"Email enviado com sucesso"});
+console.log("Email enviado com sucesso")
+}
+
+});
+mailRoutes.post("/voucher", async (req, res) =>  {
+  const email = req.body;
+  const name = req.body;
+
+  console.log(email.email);
+  console.log(name.name);
+  
+  const port = 587
+
+
+ let transporter = nodemailer.createTransport({
+    host: "smtp.umbler.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "contato@suachave.com.br",
+      pass: "211902fluminense@"
+    }
+  });
+
+
+  
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Comprovante recebido" <contato@suachave.com.br>', // sender address
+    to: email.email, // list of receivers
+    subject: "Estamos analisando 🕗", // Subject line
+    text: "Estamos analisando 🕗", // plain text body
+    html: `<p>Recebemos o seu pedido de pagamento e seu comprovante<br/>
+    Em até 48h você receberá um e-mail de confirmação, informando estar tudo ok com o comprovante enviado.<br/><br/>
+    Não se preocupe, seu acesso ja está liberado. <br/>
+    <a href="https://adm.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">Acessar área administrativa</a> <br/>
+    <br/><br/>
+    Em caso de dúvida, fale conosco. <br/>
+    Whatsapp: (21) 99742-9585<br/>
+    E-mail: contato@suachave.com.br <br/>
+    --
+    <br/>
+    <a href="https://www.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">www.suachave.com.br</a><p/>`, // html body.
   });
 
 
@@ -273,16 +152,22 @@ console.log("Email enviado com sucesso")
 });
 
 mailRoutes.post("/paymentaproved", async (req, res) =>  {
-  const mail = req.body;
-  console.log(mail.mail)
+  const email = req.body;
+  const name = req.body;
+
+  console.log(email.email);
+  console.log(name.name);
+  
+  const port = 587
 
 
  let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
+    host: "smtp.umbler.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
+      user: "contato@suachave.com.br",
+      pass: "211902fluminense@"
     }
   });
 
@@ -290,19 +175,20 @@ mailRoutes.post("/paymentaproved", async (req, res) =>  {
   
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Tudo ok por aqui" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
-    subject: "Pagamento confrmado 👏🏳️‍🌈", // Subject line
-    text: "Pagamento confrmado 👏🏳️‍🌈", // plain text body
-    html: `<p>Parabéns, identificamos seu pagamento<br/>
-    Continue a usar o nosso site com todos os benefícios que seu plano oferece.<br/>
-    <br/>
-    Acessar site: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
+    from: '"Tudo ok por aqui" <contato@suachave.com.br>', // sender address
+    to: email.email, // list of receivers
+    subject: "Pagamento confirmado 👏", // Subject line
+    text: "Pagamento confirmado 👏", // plain text body
+    html: `<p>Tudo certo, identificamos seu pagamento<br/>
+    Continue a usar nossa plataforma aproveitando nossos serviços.<br/>
+    <a href="https://adm.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">Acessar área administrativa</a> <br/>
+    <br/><br/>
     Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
+    Whatsapp: (21) 99742-9585<br/>
+    E-mail: contato@suachave.com.br <br/>
+    --
+    <br/>
+    <a href="https://www.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">www.suachave.com.br</a><p/>`, // html body.
   });
 
 
@@ -313,17 +199,23 @@ console.log("Email enviado com sucesso")
 
 });
 
-mailRoutes.post("/paymentreproved", async (req, res) =>  {
-  const mail = req.body;
-  console.log(mail.mail)
+mailRoutes.post("/alert", async (req, res) =>  {
+  const email = req.body;
+  const name = req.body;
+
+  console.log(email.email);
+  console.log(name.name);
+  
+  const port = 587
 
 
  let transporter = nodemailer.createTransport({
-    host: "email-ssl.com.br",
-    port: 465,
+    host: "smtp.umbler.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
+      user: "contato@suachave.com.br",
+      pass: "211902fluminense@"
     }
   });
 
@@ -331,8 +223,56 @@ mailRoutes.post("/paymentreproved", async (req, res) =>  {
   
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Ops. Temos um problema" <contato@foursome.com.br>', // sender address
-    to: mail.mail, // list of receivers
+    from: '"Novidades" <contato@suachave.com.br>', // sender address
+    to: email.email, // list of receivers
+    subject: "Alerta correspondente 😉", // Subject line
+    text: "Alerta correspondente 😉", // plain text body
+    html: `<p>Um novo imóvel foi adicionado e corrsponde com seu alerta.<br/>
+    Clique no link abaixo e veja:.
+    <br/><br/>
+    <a href="https://www.suachave.com.br/imovel/00000" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">Ver imóvel</a>
+    <br/><br/>
+    Em caso de dúvida, fale conosco. <br/>
+    Whatsapp: (21) 99742-9585<br/>
+    E-mail: contato@suachave.com.br <br/>
+    --
+    <br/>
+    <a href="https://www.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">www.suachave.com.br</a><p/>`, // html body.
+  });
+
+
+  if(info) {
+    res.status(200).json({"message":"Email enviado com sucesso"});
+console.log("Email enviado com sucesso")
+}
+
+});
+mailRoutes.post("/paymentreproved", async (req, res) =>  {
+  const email = req.body;
+  const name = req.body;
+
+  console.log(email.email);
+  console.log(name.name);
+  
+  const port = 587
+
+
+ let transporter = nodemailer.createTransport({
+    host: "smtp.umbler.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "contato@suachave.com.br",
+      pass: "211902fluminense@"
+    }
+  });
+
+
+  
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Ops. Temos um problema" <contato@suachave.com.br>', // sender address
+    to: email.email, // list of receivers
     subject: "Temos um problema 😢", // Subject line
     text: "Ops. Temos um problema 😢", // plain text body
     html: `<p>Não identificamos o seu pagamento.<br/>
@@ -342,16 +282,15 @@ mailRoutes.post("/paymentreproved", async (req, res) =>  {
     Não envie comprovante resumido.<br/>
     Não envie linha de extrato.<br/>
     Não rasure ou corte o comprovante.<br/>
-    O envio de comprovante fora dos padrões poderá causar o bloqueio do seu acesso.</b> <br/><br/>
-    Você pode enviar um novo comprovante para o nosso whatsapp, para acelerar a liberação de seu acesso.<br/>
-    <br/>
-    <br/>
-    Acessar site: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
+    O envio de comprovante fora dos padrões impossibilita análise do mesmo.</b> <br/><br/>
+    Você pode enviar um novo comprovante respondendo este e-mail ou em nosso whatsapp.<br/>
+    <br/><br/>
     Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
-    
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a><p/>`, // html body.
+    Whatsapp: (21) 99742-9585<br/>
+    E-mail: contato@suachave.com.br <br/>
+    --
+    <br/>
+    <a href="https://www.suachave.com.br" target="_blank" style="text-decoration: none; color: black; font-weight: bold;">www.suachave.com.br</a><p/>`, // html body.
   });
 
 
@@ -373,8 +312,8 @@ mailRoutes.post("/username", async (req, res) =>  {
     host: "email-ssl.com.br",
     port: 465,
     auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
+      user: "contato@suachave.com.br",
+      pass: "suachave2021*"
     }
   });
 
@@ -382,7 +321,7 @@ mailRoutes.post("/username", async (req, res) =>  {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Aqui está!" <contato@foursome.com.br>', // sender address
+    from: '"Aqui está!" <contato@suachave.com.br>', // sender address
     to: mail.mail, // list of receivers
     subject: "Trouxemos o que nos pediu 😎", // Subject line
     text: "Trouxemos o que nos pediu 😎", // plain text body
@@ -390,12 +329,12 @@ mailRoutes.post("/username", async (req, res) =>  {
     Aqui está. Utilize-o para acessar o nosso site:<p/>
     <p>Seu nome de usuário:</p>
     <h3>${username.username}</h3>
-    <p>Acessar site: <a href="https://forpride.com.br" target="_blank">www.forpride.com.br</a> <br/><br/>
+    <p>Acessar site: <a href="https://suachave.com.br" target="_blank">www.suachave.com.br</a> <br/><br/>
     Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
+    Whatsapp: (22)99791-0510<br/>
+    contato@suachave.com.br <br/><br/>
     
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a></p>`, // html body.
+    suachave <a href="https://www.suachave.com.br" target="_blank">www.suachave.com.br</a></p>`, // html body.
   });
 
 
@@ -417,14 +356,14 @@ mailRoutes.post("/passwordcode", async (req, res) =>  {
     host: "email-ssl.com.br",
     port: 465,
     auth: {
-      user: "contato@foursome.com.br",
-      pass: "Foursome2021*"
+      user: "contato@suachave.com.br",
+      pass: "suachave2021*"
     }
   })
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Seu código está aqui!" <contato@foursome.com.br>', // sender address
+    from: '"Seu código está aqui!" <contato@suachave.com.br>', // sender address
     to: mail.mail, // list of receivers
     subject: "Recupere seu acesso 🗝️", // Subject line
     text: "Recupere seu acesso 🗝️", // plain text body
@@ -432,12 +371,12 @@ mailRoutes.post("/passwordcode", async (req, res) =>  {
     Aqui está. Utilize-o para redefinir seu acesso:<p/> 
     <p>Seu código:</p>
     <h3>${code.code}</h3>
-    <p>Acesse o link para alterar sua senha: <a href="https://forpride.com.br/recuperationcode/${mail.mail}" target="_blank">Recuperar minha senha</a> <br/><br/>
+    <p>Acesse o link para alterar sua senha: <a href="https://suachave.com.br/recuperationcode/${mail.mail}" target="_blank">Recuperar minha senha</a> <br/><br/>
     Em caso de dúvida, fale conosco. <br/>
-    E-mail: contato@forpride.com.br <br/>
-    Whatsapp: (22)99783-5288 <br /><br/>
+    Whatsapp: (22)99791-0510<br/>
+    contato@suachave.com.br <br/><br/>
     
-    forpride <a href="https://www.forpride.com.br" target="_blank">www.forpride.com.br</a></p>`, // html body.
+    suachave <a href="https://www.suachave.com.br" target="_blank">www.suachave.com.br</a></p>`, // html body.
   });
 
 

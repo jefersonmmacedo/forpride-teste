@@ -1,24 +1,23 @@
 import { Payments } from "../models/Payments";
 
 interface IPaymentsDTO {
+  id: string;
   idPlain: string;
-  idAccount: string;
-  username:string;
+  idCompany: string;
   email:string;
   namePlain:string;
-  referencePlain:string;
   value: string;
   period: number;
-  aceptTerms: string;
   linkComprovant: string;
+  aceptTerms: string;
   status: string;
 }
 
 interface IPaymentsRepository {
-  create({idPlain, idAccount, username, email, namePlain,referencePlain, value, period, linkComprovant, aceptTerms, status }: IPaymentsDTO): Promise<void>;
+  create({idPlain, idCompany, email, namePlain, value, period, linkComprovant, aceptTerms, status }: IPaymentsDTO): Promise<void>;
   list();
   delete({id});
-  update({idPlain, idAccount, username, email, namePlain,referencePlain, value, period, linkComprovant, aceptTerms, status}): Promise<void>
+  update({id, idPlain, idCompany, email, namePlain, value, period, linkComprovant, aceptTerms, status}): Promise<void>
 }
 
 export { IPaymentsRepository, IPaymentsDTO };

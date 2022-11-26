@@ -1,10 +1,12 @@
 import { IPlainsRepository } from "../../repositories/IPlainsRepository";
 
 interface IRequest {
-  reference: string;
+  id: string;
   name: string;
   value: string;
-  period:number;
+  period: number;
+  infos: object;
+  note: string;
 }
 
 class CreatePlainsUseCase {
@@ -12,9 +14,9 @@ class CreatePlainsUseCase {
     ("");
   }
 
-  async execute({reference, name, value, period }: IRequest): Promise<void>{
+  async execute({id, name, value, period, infos, note }: IRequest): Promise<void>{
 
-   await this.PlainsRepository.create({reference, name, value, period });
+   await this.PlainsRepository.create({id, name, value, period, infos, note});
   }
 }
 
