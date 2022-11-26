@@ -2,29 +2,46 @@ import * as mongoDB from "mongodb";
 import * as dotenv from "dotenv";
 
 export const collections: { 
-  company?:mongoDB.Collection,
-  account?:mongoDB.Collection,
-  broker?:mongoDB.Collection,
-  property?:mongoDB.Collection,
-  favorite?:mongoDB.Collection,
-  contact?:mongoDB.Collection,
-  notification?:mongoDB.Collection,
-  scheduling?:mongoDB.Collection,
-  messages?:mongoDB.Collection,
-  chats?:mongoDB.Collection,
-  myPlan?:mongoDB.Collection,
-  plains?:mongoDB.Collection,
-  payments?:mongoDB.Collection,
-  myPayments?:mongoDB.Collection,
+  groups?: mongoDB.Collection,
+  newsletter?: mongoDB.Collection,
+  membersEvent?:mongoDB.Collection,
+  posts_groups?:mongoDB.Collection,
+  comments?:mongoDB.Collection,
+  foruns?:mongoDB.Collection,
+  posts_foruns?:mongoDB.Collection,
+  accounts?:mongoDB.Collection,
+  informations?:mongoDB.Collection,
+  characteristics?:mongoDB.Collection,
+  preferences?:mongoDB.Collection,
+  friends?:mongoDB.Collection,
+  followers?:mongoDB.Collection,
+  events?:mongoDB.Collection,
+  post?:mongoDB.Collection,
+  plan?:mongoDB.Collection,
+  like_post?:mongoDB.Collection,
+  like_post_group?:mongoDB.Collection,
+  invites?:mongoDB.Collection,
+  reactions?:mongoDB.Collection,
+  reply?:mongoDB.Collection,
+  message?:mongoDB.Collection,
+  conversations?:mongoDB.Collection,
+  usersOnline?:mongoDB.Collection,
+  locations?:mongoDB.Collection,
+  notifications?:mongoDB.Collection,
+  dateRead?:mongoDB.Collection,
+  notificationsMessage?:mongoDB.Collection,
+  dateReadMessage?:mongoDB.Collection,
+  dateReadMessageChat?:mongoDB.Collection,
+  dateReadFeed?:mongoDB.Collection,
+  dateReadLogin?:mongoDB.Collection,
+  visits?:mongoDB.Collection,
+  navigator?:mongoDB.Collection,
   recuperation?:mongoDB.Collection,
-  viewProperty?:mongoDB.Collection,
-  myPlain?:mongoDB.Collection,
-  financer?:mongoDB.Collection,
-  access?:mongoDB.Collection,
-  clientCompany?:mongoDB.Collection,
-  bank?:mongoDB.Collection,
-  negotiations?:mongoDB.Collection,
-  paymentRent?:mongoDB.Collection,
+  payments?:mongoDB.Collection,
+  plains?:mongoDB.Collection,
+  news?:mongoDB.Collection,
+  newsreply?:mongoDB.Collection,
+  periodTest?:mongoDB.Collection,
  } = {}
 
 export async function connectToDatabase() {
@@ -36,100 +53,187 @@ export async function connectToDatabase() {
 
   const db: mongoDB.Db = client.db(process.env.DB_NAME);
 
-      // company
-      const companyCollection: mongoDB.Collection = db.collection(process.env.COMPANY_COLLECTION_NAME);
-      collections.company = companyCollection;
-      console.log(`Successfully connected to database: ${db.databaseName} and collection: ${companyCollection.collectionName}`);
+  // Newsletter
+  const newsletterCollection: mongoDB.Collection = db.collection(process.env.NEWSLETTER_COLLECTION_NAME);
+  collections.newsletter = newsletterCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${newsletterCollection.collectionName}`);
 
-      // client
-      const accountCollection: mongoDB.Collection = db.collection(process.env.ACCOUNT_COLLECTION_NAME);
-      collections.account = accountCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${favoriteCollection.collectionName}`);
+  //Groups
+  const groupsCollection: mongoDB.Collection = db.collection(process.env.GROUPS_COLLECTION_NAME);
+  collections.groups = groupsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${groupsCollection.collectionName}`);
 
-      // broker
-      const brokerCollection: mongoDB.Collection = db.collection(process.env.BROKER_COLLECTION_NAME);
-      collections.broker = brokerCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${favoriteCollection.collectionName}`);
-      
-      // property
-      const propertyCollection: mongoDB.Collection = db.collection(process.env.PROPERTY_COLLECTION_NAME);
-      collections.property = propertyCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${favoriteCollection.collectionName}`);
-      
-      
-      // Favorite
-      const favoriteCollection: mongoDB.Collection = db.collection(process.env.FAVORITE_COLLECTION_NAME);
-      collections.favorite = favoriteCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${favoriteCollection.collectionName}`);
-      
-      
-      // Favorite
-      const contactCollection: mongoDB.Collection = db.collection(process.env.CONTACT_COLLECTION_NAME);
-      collections.contact = contactCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${favoriteCollection.collectionName}`);
-      
-      // scheduling
-      const schedulingCollection: mongoDB.Collection = db.collection(process.env.SCHEDULING_COLLECTION_NAME);
-      collections.scheduling = schedulingCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${favoriteCollection.collectionName}`);
+   //Groups Members
+   const membersEventCollection: mongoDB.Collection = db.collection(process.env.MEMBERSEVENT_COLLECTION_NAME);
+   collections.membersEvent = membersEventCollection;
+   // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${membersEventCollection.collectionName}`);
 
-      // Messagess
-      const messagesCollection: mongoDB.Collection = db.collection(process.env.MESSAGEs_COLLECTION_NAME);
-      collections.messages = messagesCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${messagesCollection.collectionName}`);
+    //Groups Posts
+  const groupsPostsCollection: mongoDB.Collection = db.collection(process.env.POSTSGROUPS_COLLECTION_NAME);
+  collections.posts_groups = groupsPostsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${groupsPostsCollection.collectionName}`);
 
-      // Messagess
-      const chatCollection: mongoDB.Collection = db.collection(process.env.CHATS_COLLECTION_NAME);
-      collections.chats = chatCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${chatCollection.collectionName}`);
+   //Comments
+   const commentsCollection: mongoDB.Collection = db.collection(process.env.COMMENTS_COLLECTION_NAME);
+   collections.comments = commentsCollection;
+   // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${commentsCollection.collectionName}`);
 
-      const notificationCollection: mongoDB.Collection = db.collection(process.env.NOTIFICATION_COLLECTION_NAME);
-      collections.notification = notificationCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
+   // Like Post Group
+  const likePostGroupCollection: mongoDB.Collection = db.collection(process.env.LIKEPOSTGROUP_COLLECTION_NAME);
+  collections.like_post_group = likePostGroupCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${likePostGroupCollection.collectionName}`);
+
+   //Foruns
+  const forunsCollection: mongoDB.Collection = db.collection(process.env.FORUNS_COLLECTION_NAME);
+  collections.foruns = forunsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${forunsCollection.collectionName}`);
+
+  //Foruns Post
+  const forunsPostCollection: mongoDB.Collection = db.collection(process.env.POSTSFORUNS_COLLECTION_NAME);
+  collections.posts_foruns = forunsPostCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${forunsPostCollection.collectionName}`);
+ 
+  // Accounts
+  const accountsCollection: mongoDB.Collection = db.collection(process.env.ACCOUNTS_COLLECTION_NAME);
+  collections.accounts = accountsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${accountsCollection.collectionName}`);
+
+  // Accounts Informations
+  const informationsCollection: mongoDB.Collection = db.collection(process.env.INFORMATIONS_COLLECTION_NAME);
+  collections.informations = informationsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${informationsCollection.collectionName}`);
+
+  // Accounts Preferences
+  const accountsPreferencesCollection: mongoDB.Collection = db.collection(process.env.PREFERENCES_COLLECTION_NAME);
+  collections.preferences = accountsPreferencesCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${accountsPreferencesCollection.collectionName}`);
+
+  // Accounts Characteristics
+  const accountsCharacteristicsCollection: mongoDB.Collection = db.collection(process.env.CHARACTERISTICS_COLLECTION_NAME);
+  collections.characteristics = accountsCharacteristicsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${accountsCharacteristicsCollection.collectionName}`);
+
+  // Friends
+  const friendsCollection: mongoDB.Collection = db.collection(process.env.FRIENDS_COLLECTION_NAME);
+  collections.friends = friendsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${friendsCollection.collectionName}`);
+
+   // Friends
+   const followersCollection: mongoDB.Collection = db.collection(process.env.FOLLOWERS_COLLECTION_NAME);
+   collections.followers = followersCollection;
+   // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${followersCollection.collectionName}`);
+ 
+  // Events
+  const eventsCollection: mongoDB.Collection = db.collection(process.env.EVENTS_COLLECTION_NAME);
+  collections.events = eventsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${eventsCollection.collectionName}`);
+
+  // Posts
+  const postsCollection: mongoDB.Collection = db.collection(process.env.POST_COLLECTION_NAME);
+  collections.post = postsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${postsCollection.collectionName}`);
+
+  // Accounts Plan
+  const planCollection: mongoDB.Collection = db.collection(process.env.PLAN_COLLECTION_NAME);
+  collections.plan = planCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${planCollection.collectionName}`);
+
+  // Like Post
+  const likePostCollection: mongoDB.Collection = db.collection(process.env.LIKEPOST_COLLECTION_NAME);
+  collections.like_post = likePostCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${likePostCollection.collectionName}`);
+
+  // Invites
+  const invitesCollection: mongoDB.Collection = db.collection(process.env.INVITES_COLLECTION_NAME);
+  collections.invites = invitesCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${invitesCollection.collectionName}`);
+
+  // Like Post
+  const reactionsCollection: mongoDB.Collection = db.collection(process.env.REACTIONS_COLLECTION_NAME);
+  collections.reactions = reactionsCollection;
+  // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${reactionsCollection.collectionName}`);
+
+    // Reply Comments
+    const replyCollection: mongoDB.Collection = db.collection(process.env.REPLY_COLLECTION_NAME);
+    collections.reply = replyCollection;
+    // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${replyCollection.collectionName}`);
+
+      // Messages
+      const messageCollection: mongoDB.Collection = db.collection(process.env.MESSAGE_COLLECTION_NAME);
+      collections.message = messageCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${messageCollection.collectionName}`);
+
+      // Messages
+      const conversationCollection: mongoDB.Collection = db.collection(process.env.CONVERSATIONS_COLLECTION_NAME);
+      collections.conversations = conversationCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${conversationCollection.collectionName}`);
+
+      // Messages
+      const usersOnlineCollection: mongoDB.Collection = db.collection(process.env.USERSONLINE_COLLECTION_NAME);
+      collections.usersOnline = usersOnlineCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${usersOnlineCollection.collectionName}`);
+
+      // Messages
+      const locationsCollection: mongoDB.Collection = db.collection(process.env.LOCATIONS_COLLECTION_NAME);
+      collections.locations = locationsCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${locationsCollection.collectionName}`);
+
+      const notificationsCollection: mongoDB.Collection = db.collection(process.env.NOTIFICATIONS_COLLECTION_NAME);
+      collections.notifications = notificationsCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+
+      const datereadCollection: mongoDB.Collection = db.collection(process.env.DATEREAD_COLLECTION_NAME);
+      collections.dateRead = datereadCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${locationsCollection.collectionName}`);
+
+      const notificationsMessageCollection: mongoDB.Collection = db.collection(process.env.NOTIFICATIONSMESSAGE_COLLECTION_NAME);
+      collections.notificationsMessage = notificationsMessageCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+      
+      const datereadMessageCollection: mongoDB.Collection = db.collection(process.env.DATEREADMESSAGE_COLLECTION_NAME);
+      collections.dateReadMessage = datereadMessageCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+
+      const datereadMessageChatCollection: mongoDB.Collection = db.collection(process.env.DATEREADMESSAGECHAT_COLLECTION_NAME);
+      collections.dateReadMessageChat = datereadMessageChatCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+
+      const datereadFeedCollection: mongoDB.Collection = db.collection(process.env.DATEREADFEED_COLLECTION_NAME);
+      collections.dateReadFeed = datereadFeedCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+
+      const datereadLoginCollection: mongoDB.Collection = db.collection(process.env.DATEREADLOGIN_COLLECTION_NAME);
+      collections.dateReadLogin = datereadLoginCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+
+      const visitsCollection: mongoDB.Collection = db.collection(process.env.VISITS_COLLECTION_NAME);
+      collections.visits = visitsCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
+
+      const navigatorCollection: mongoDB.Collection = db.collection(process.env.NAVIGATOR_COLLECTION_NAME);
+      collections.navigator = navigatorCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
 
       const recuperationCollection: mongoDB.Collection = db.collection(process.env.RECUPERATION_COLLECTION_NAME);
       collections.recuperation = recuperationCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-      
-      const myPaymentsCollection: mongoDB.Collection = db.collection(process.env.MYPAYMENTS_COLLECTION_NAME);
-      collections.myPayments = myPaymentsCollection;
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
 
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
       const paymentsCollection: mongoDB.Collection = db.collection(process.env.PAYMENTS_COLLECTION_NAME);
       collections.payments = paymentsCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-      const myPlainCollection: mongoDB.Collection = db.collection(process.env.MYPLAIN_COLLECTION_NAME);
-      collections.myPlain = myPlainCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
 
       const plainsCollection: mongoDB.Collection = db.collection(process.env.PLAINS_COLLECTION_NAME);
       collections.plains = plainsCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
+      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationsCollection.collectionName}`);
 
-      const viewPropertyCollection: mongoDB.Collection = db.collection(process.env.VIEWPROPERTY_COLLECTION_NAME);
-      collections.viewProperty = viewPropertyCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-
-      const FinancerCollection: mongoDB.Collection = db.collection(process.env.FINANCER_COLLECTION_NAME);
-      collections.financer = FinancerCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-
-      const accessCollection: mongoDB.Collection = db.collection(process.env.ACCESS_COLLECTION_NAME);
-      collections.access = accessCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-
-      const clientCompanyCollection: mongoDB.Collection = db.collection(process.env.CLIENTCOMPANY_COLLECTION_NAME);
-      collections.clientCompany = clientCompanyCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-
-      const negotiationsCollection: mongoDB.Collection = db.collection(process.env.NEGOTIATIONS_COLLECTION_NAME);
-      collections.negotiations = negotiationsCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
       
-      const paymentRentCollection: mongoDB.Collection = db.collection(process.env.PAYMENTRENT_COLLECTION_NAME);
-      collections.paymentRent = paymentRentCollection;
-      // console.log(`Successfully connected to database: ${db.databaseName} and collection: ${notificationCollection.collectionName}`);
-      }
+      const plainsNews: mongoDB.Collection = db.collection(`${process.env.NEWS_COLLECTION_NAME}`);
+      collections.news = plainsNews;
+
+      const plainsNewsReply: mongoDB.Collection = db.collection(`${process.env.NEWSREPLY_COLLECTION_NAME}`);
+      collections.newsreply = plainsNewsReply;
+
+      const periodTestNewsReply: mongoDB.Collection = db.collection(`${process.env.PERIODTEST_COLLECTION_NAME}`);
+      collections.periodTest = periodTestNewsReply;
+    }
   
