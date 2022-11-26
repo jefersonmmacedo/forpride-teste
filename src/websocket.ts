@@ -80,16 +80,7 @@ io.on("connection", (socket) => {
      console.log("usersOnline");
      console.log(usersOnline);
 
-     collections.usersOnline.insertOne({
-      idAccount: data.idAccount,
-      username: data.username,
-      lat: data.lat,
-      long: data.long,
-      nickname: data.nickname,
-      equalCity: data.aqualCity,
-      created_at: new Date(),
-      id: uuidv4()}
-    )
+
    })
 
    
@@ -154,32 +145,8 @@ io.on("connection", (socket) => {
         id: data.id
       }
 
-      collections.message.insertOne({
-        idRoom: data.room,
-        idAccount: data.idAccount,
-        text: data.text,
-        link: data.link,
-        type: data.type,
-        avatar: data.avatar,
-        username: data.username,
-        nickname: data.nickname,
-        created_at: data.created_at,
-        id: data.id
-      })
       messages.push(message);
 
-      // if(rooms.length === 0) {
-      //   collections.notifications.insertOne({
-      //     idAccount: data.idAccount,
-      //     text: `${data.idAccount}, enviou uma nova mensagem.`,
-      //     idFriend: rooms. === data.idAccount ? rooms.idFriend : data.idAccount,
-      //     avatar: data.avatar,
-      //     username: data.username,
-      //     nickname: data.nickname,
-      //     created_at: data.created_at,
-      //     id: uuidv4()}
-      //   )
-      // }
 
       socket.to(data.room).emit("message", message);
     });
